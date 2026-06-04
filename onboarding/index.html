@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Onboarding Journey - Envitia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:      #84bd00;
+      --green-dark: #6aa000;
+      --dark:       #1f2a44;
+      --dark-mid:   #2d3d5e;
+      --light:      #f5f7fa;
+      --white:      #ffffff;
+      --border:     #e1e4e8;
+      --text:       #1f2a44;
+      --text-mid:   #4a5568;
+      --text-muted: #718096;
+      --radius:     6px;
+      --shadow:     0 2px 12px rgba(0,0,0,.10);
+      --shadow-lg:  0 8px 32px rgba(0,0,0,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Poppins", sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ─── Nav ─────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: var(--dark); display: flex; align-items: center;
+      padding: 0 40px; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    }
+    .nav-logo img { height: 26px; width: auto; display: block; }
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 24px; }
+    .nav-link { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: rgba(255,255,255,.75); transition: color .15s; }
+    .nav-link:hover { color: var(--green); }
+
+    /* ─── Hero ────────────────────────────────────────────────────── */
+    .hero { margin-top: 64px; background: var(--dark); padding: 52px 60px 44px; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green); margin-bottom: 14px; }
+    .hero-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--green); }
+
+    /* Name personalisation */
+    .hero-welcome { margin-bottom: 24px; }
+    .hero-welcome h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -.5px; }
+    .hero-welcome h1 span { color: var(--green); }
+    .hero-welcome p { margin-top: 10px; font-size: .95rem; line-height: 1.7; color: rgba(255,255,255,.6); max-width: 520px; }
+
+    .name-form { display: flex; gap: 10px; align-items: center; margin-bottom: 24px; }
+    .name-input {
+      padding: 10px 16px; border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius);
+      background: rgba(255,255,255,.07); color: var(--white);
+      font-family: inherit; font-size: .9rem; width: 260px;
+      outline: none; transition: border-color .15s;
+    }
+    .name-input::placeholder { color: rgba(255,255,255,.35); }
+    .name-input:focus { border-color: var(--green); }
+    .name-btn {
+      padding: 10px 22px; background: var(--green); color: var(--dark);
+      font-size: .85rem; font-weight: 700; border: none; border-radius: var(--radius);
+      transition: background .15s;
+    }
+    .name-btn:hover { background: var(--green-dark); color: var(--white); }
+
+    /* Progress bar */
+    .progress-wrap { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; }
+    .progress-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+    .progress-label { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .5px; }
+    .progress-count { font-size: .85rem; font-weight: 700; color: var(--green); }
+    .progress-bar-track { height: 6px; background: rgba(255,255,255,.1); border-radius: 10px; overflow: hidden; }
+    .progress-bar-fill { height: 100%; background: var(--green); border-radius: 10px; transition: width .4s ease; }
+
+    /* ─── Main layout ─────────────────────────────────────────────── */
+    .page-wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 64px - 160px); }
+
+    /* ─── Timeline sidebar ────────────────────────────────────────── */
+    .timeline {
+      position: sticky; top: 64px; align-self: start;
+      height: calc(100vh - 64px); overflow-y: auto;
+      border-right: 1px solid var(--border); padding: 32px 0;
+    }
+    .timeline-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); padding: 0 24px 16px; }
+
+    .phase-btn {
+      display: flex; align-items: flex-start; gap: 14px; width: 100%;
+      padding: 12px 24px; background: none; border: none;
+      border-right: 3px solid transparent; text-align: left;
+      transition: background .12s, border-color .12s;
+      position: relative;
+    }
+    .phase-btn:hover { background: var(--light); }
+    .phase-btn.active { background: rgba(132,189,0,.06); border-right-color: var(--green); }
+
+    .phase-node {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .72rem; font-weight: 800;
+      border: 2px solid var(--border); background: var(--light); color: var(--text-muted);
+      transition: all .15s;
+    }
+    .phase-btn.active .phase-node { border-color: var(--green); background: var(--green); color: var(--dark); }
+    .phase-btn.complete .phase-node { border-color: var(--green); background: var(--green); color: var(--dark); }
+
+    .phase-info { flex: 1; min-width: 0; }
+    .phase-name { font-size: .83rem; font-weight: 600; color: var(--text-mid); margin-bottom: 2px; }
+    .phase-btn.active .phase-name { color: var(--green-dark); font-weight: 700; }
+    .phase-btn.complete .phase-name { color: var(--text-mid); }
+    .phase-sublabel { font-size: .73rem; color: var(--text-muted); }
+    .phase-progress-pill {
+      font-size: .68rem; font-weight: 700;
+      background: var(--light); color: var(--text-muted);
+      padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border);
+      margin-top: 4px; display: inline-block;
+    }
+    .phase-btn.complete .phase-progress-pill { background: rgba(132,189,0,.12); color: var(--green-dark); border-color: rgba(132,189,0,.25); }
+
+    /* ─── Content panel ───────────────────────────────────────────── */
+    .content { padding: 48px 56px 80px; }
+
+    .phase-header { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
+    .phase-header-left { flex: 1; }
+    .phase-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green-dark); margin-bottom: 8px; }
+    .phase-title { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -.3px; }
+    .phase-desc { font-size: .92rem; line-height: 1.75; color: var(--text-mid); }
+
+    .phase-complete-badge {
+      display: none; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: var(--radius);
+      background: rgba(132,189,0,.1); border: 1px solid rgba(132,189,0,.25);
+      font-size: .8rem; font-weight: 700; color: var(--green-dark);
+      flex-shrink: 0;
+    }
+    .phase-complete-badge.show { display: flex; }
+
+    /* Tasks */
+    .tasks-section-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+
+    .task-list { list-style: none; display: flex; flex-direction: column; gap: 2px; margin-bottom: 40px; }
+    .task-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 16px; border-radius: var(--radius);
+      border: 1px solid transparent;
+      transition: background .1s, border-color .1s;
+      cursor: pointer;
+    }
+    .task-item:hover { background: var(--light); border-color: var(--border); }
+    .task-item.done { background: rgba(132,189,0,.04); }
+
+    .task-check {
+      width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+      border: 2px solid var(--border); background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s; cursor: pointer;
+    }
+    .task-item.done .task-check { background: var(--green); border-color: var(--green); }
+    .task-check-tick { display: none; width: 10px; height: 8px; }
+    .task-check-tick path { stroke: var(--dark); }
+    .task-item.done .task-check-tick { display: block; }
+
+    .task-text { font-size: .88rem; line-height: 1.6; color: var(--text-mid); flex: 1; padding-top: 1px; }
+    .task-item.done .task-text { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--border); }
+
+    /* Links */
+    .links-section-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .link-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius);
+      font-size: .85rem; font-weight: 600; color: var(--text);
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .link-card:hover { border-color: var(--green); box-shadow: var(--shadow); color: var(--green-dark); }
+    .link-card-icon { font-size: 1.1rem; flex-shrink: 0; }
+    .link-card-label { flex: 1; min-width: 0; }
+    .link-card-sub { font-size: .73rem; font-weight: 400; color: var(--text-muted); display: block; }
+    .link-card-arrow { color: var(--border); font-size: .9rem; transition: transform .15s; }
+    .link-card:hover .link-card-arrow { transform: translateX(3px); color: var(--green); }
+
+    /* Phase navigation */
+    .phase-nav { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .phase-nav-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius);
+      font-size: .85rem; font-weight: 600;
+      border: 1px solid var(--border); background: var(--white); color: var(--text-mid);
+      transition: all .15s;
+    }
+    .phase-nav-btn:hover { border-color: var(--green); color: var(--green-dark); }
+    .phase-nav-btn:disabled { opacity: .35; pointer-events: none; }
+    .phase-nav-btn.next { background: var(--dark); color: var(--white); border-color: var(--dark); }
+    .phase-nav-btn.next:hover { background: var(--dark-mid); }
+
+    /* Reset link */
+    .reset-wrap { text-align: center; margin-top: 20px; }
+    .reset-btn { font-size: .75rem; color: var(--text-muted); background: none; border: none; text-decoration: underline; cursor: pointer; }
+    .reset-btn:hover { color: var(--text); }
+
+    /* Mobile timeline (horizontal scroll) */
+    .mobile-timeline { display: none; }
+
+    /* ─── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .timeline { display: none; }
+      .mobile-timeline {
+        display: flex; overflow-x: auto; gap: 0;
+        position: sticky; top: 64px; z-index: 50;
+        background: var(--white); border-bottom: 1px solid var(--border);
+        scrollbar-width: none;
+      }
+      .mobile-timeline::-webkit-scrollbar { display: none; }
+      .mobile-phase-btn {
+        flex-shrink: 0; padding: 12px 16px; background: none; border: none;
+        border-bottom: 2px solid transparent;
+        font-size: .78rem; font-weight: 600; color: var(--text-muted);
+        white-space: nowrap; transition: all .12s;
+      }
+      .mobile-phase-btn.active { color: var(--green-dark); border-bottom-color: var(--green); }
+      .mobile-phase-btn.complete { color: var(--green-dark); }
+      .content { padding: 32px 20px 60px; }
+      .links-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .hero { padding: 40px 20px 36px; }
+      .nav { padding: 0 20px; }
+      .phase-header { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Nav ───────────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="https://www.envitia.com" class="nav-logo">
+    <img src="https://www.envitia.com/wp-content/uploads/2022/03/white-envitia-logo.svg" alt="Envitia" />
+  </a>
+  <div class="nav-right">
+    <a href="https://www.envitia.com/about/" class="nav-link">About</a>
+    <a href="../benefits-guide/" class="nav-link">Benefits</a>
+  </div>
+</nav>
+
+<!-- ─── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">New Joiner Guide</div>
+    <div class="hero-welcome" id="heroWelcome"></div>
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Your onboarding progress</span>
+        <span class="progress-count" id="progressCount"></span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Mobile timeline ───────────────────────────────────────────────────── -->
+<div class="mobile-timeline" id="mobileTimeline"></div>
+
+<!-- ─── Main layout ───────────────────────────────────────────────────────── -->
+<div class="page-wrap">
+  <aside class="timeline">
+    <div class="timeline-label">Your journey</div>
+    <nav id="timelineNav"></nav>
+    <div class="reset-wrap">
+      <button class="reset-btn" onclick="confirmReset()">Reset my progress</button>
+    </div>
+  </aside>
+  <div class="content" id="contentArea"></div>
+</div>
+
+<script>
+// ─── Data ────────────────────────────────────────────────────────────────────
+
+const PHASES = [
+  {
+    id: 'before',
+    label: 'Before You Start',
+    sublabel: 'Pre-joining',
+    index: 1,
+    desc: 'Everything to get in order before your first day. P&C will guide you through most of this — don\'t worry if something\'s unclear, just ask.',
+    tasks: [
+      { id: 'b1', text: 'Complete your new starter forms (sent by P&C via email)' },
+      { id: 'b2', text: 'Return your signed contract and right-to-work documents' },
+      { id: 'b3', text: 'Confirm your start date, time, and office location with your manager' },
+      { id: 'b4', text: 'Check your first-day logistics — travel, parking, what to bring' },
+      { id: 'b5', text: 'Read the new starter information pack from P&C' },
+    ],
+    links: [
+      { icon: '📧', label: 'P&C Team', sub: 'people@envitia.com', url: 'mailto:people@envitia.com' },
+      { icon: '🌐', label: 'Envitia Website', sub: 'envitia.com', url: 'https://www.envitia.com' },
+    ],
+  },
+  {
+    id: 'day1',
+    label: 'Day 1',
+    sublabel: 'Your first day',
+    index: 2,
+    desc: 'A day to get settled, meet people, and set up your kit. No pressure to be productive — just absorb, ask questions, and get comfortable.',
+    tasks: [
+      { id: 'd1', text: 'Meet your P&C contact and collect your kit and access pass' },
+      { id: 'd2', text: 'Set up your laptop and log in to your Envitia accounts' },
+      { id: 'd3', text: 'Complete the IT security induction with the IT team' },
+      { id: 'd4', text: 'Meet your team and your onboarding buddy' },
+      { id: 'd5', text: 'Complete mandatory health & safety e-learning (link sent by IT)' },
+      { id: 'd6', text: 'Have your Day 1 check-in with your line manager' },
+    ],
+    links: [
+      { icon: '🖥', label: 'IT Service Desk', sub: 'Log a support ticket', url: '#' },
+      { icon: '👥', label: 'Teams / Comms', sub: 'Internal messaging', url: '#' },
+    ],
+  },
+  {
+    id: 'week1',
+    label: 'Week 1',
+    sublabel: 'First week',
+    index: 3,
+    desc: 'Time to find your feet. Get access to everything you need, start joining the team rhythms, and complete your compliance training.',
+    tasks: [
+      { id: 'w1', text: 'Confirm you have access to all systems — flag anything missing to IT' },
+      { id: 'w2', text: 'Join your team\'s regular ceremonies (standup, sprint, team meetings)' },
+      { id: 'w3', text: 'Complete all mandatory compliance e-learning modules' },
+      { id: 'w4', text: 'Submit your Baseline Personnel Security Standard (BPSS) documentation' },
+      { id: 'w5', text: 'Have your role introduction meeting with your line manager' },
+      { id: 'w6', text: 'Set up your regular 1:1 cadence with your manager' },
+      { id: 'w7', text: 'Introduce yourself to the wider business on Teams' },
+    ],
+    links: [
+      { icon: '📋', label: 'HR Portal', sub: 'People system & policies', url: '#' },
+      { icon: '📚', label: 'Employee Handbook', sub: 'Policies and guidelines', url: '#' },
+      { icon: '🔒', label: 'Security Portal', sub: 'BPSS documentation', url: '#' },
+      { icon: '🖥', label: 'IT Service Desk', sub: 'Access & system issues', url: '#' },
+    ],
+  },
+  {
+    id: 'month1',
+    label: 'Month 1',
+    sublabel: 'First month',
+    index: 4,
+    desc: 'You\'re getting into the flow. Start contributing to real work, agree your objectives, and explore the support available to you.',
+    tasks: [
+      { id: 'm1', text: 'Complete all outstanding mandatory training modules' },
+      { id: 'm2', text: 'Agree your objectives and development goals with your manager' },
+      { id: 'm3', text: 'Get a project or workstream introduction and start contributing' },
+      { id: 'm4', text: 'Book your mid-probation check-in (if applicable)' },
+      { id: 'm5', text: 'Explore the internal learning resources and your L&D budget' },
+      { id: 'm6', text: 'Connect with key stakeholders and colleagues across the business' },
+    ],
+    links: [
+      { icon: '🎯', label: 'Learning Platform', sub: 'Courses and resources', url: '#' },
+      { icon: '📊', label: 'Performance Portal', sub: 'Goals and check-ins', url: '#' },
+      { icon: '💰', label: 'Benefits Portal', sub: 'Confirm your elections', url: '#' },
+    ],
+  },
+  {
+    id: 'month3',
+    label: '3 Months',
+    sublabel: 'Probation review',
+    index: 5,
+    desc: 'A milestone moment. You\'ll have your formal probation review, confirm your benefits, and set the foundation for your first year.',
+    tasks: [
+      { id: 'p1', text: 'Complete your probation review meeting with your line manager' },
+      { id: 'p2', text: 'Confirm and finalise your benefits elections (pension, PMI, etc.)' },
+      { id: 'p3', text: 'Set up your Personal Development Plan for the year ahead' },
+      { id: 'p4', text: 'Ensure all mandatory training is fully completed and logged' },
+      { id: 'p5', text: 'Attend a team social or company event' },
+    ],
+    links: [
+      { icon: '💰', label: 'Benefits Portal', sub: 'Confirm your selections', url: '#' },
+      { icon: '📊', label: 'Performance Portal', sub: 'Probation review form', url: '#' },
+    ],
+  },
+  {
+    id: 'month6',
+    label: '6 Months+',
+    sublabel: 'Fully embedded',
+    index: 6,
+    desc: 'You\'re part of the team. Focus on impact, your own growth, and sharing what you\'ve learned with those who come after you.',
+    tasks: [
+      { id: 's1', text: 'Participate in your first formal performance review cycle' },
+      { id: 's2', text: 'Identify your goals and areas of focus for your first full year' },
+      { id: 's3', text: 'Consider mentoring or buddying a new joiner' },
+      { id: 's4', text: 'Share feedback on your onboarding experience with P&C' },
+    ],
+    links: [
+      { icon: '📧', label: 'P&C Team', sub: 'Feedback & support', url: 'mailto:people@envitia.com' },
+      { icon: '📊', label: 'Performance Portal', sub: 'Annual review', url: '#' },
+    ],
+  },
+];
+
+// ─── State ───────────────────────────────────────────────────────────────────
+
+const STORE_TASKS = 'envitia-onboarding-tasks';
+const STORE_NAME  = 'envitia-onboarding-name';
+
+let activePhaseId = PHASES[0].id;
+let name = localStorage.getItem(STORE_NAME) || '';
+
+function getCompleted() {
+  try { return JSON.parse(localStorage.getItem(STORE_TASKS)) || []; }
+  catch { return []; }
+}
+
+function saveCompleted(arr) {
+  localStorage.setItem(STORE_TASKS, JSON.stringify(arr));
+}
+
+function toggleTask(taskId) {
+  const completed = getCompleted();
+  const idx = completed.indexOf(taskId);
+  if (idx === -1) completed.push(taskId);
+  else completed.splice(idx, 1);
+  saveCompleted(completed);
+  renderAll();
+}
+
+function phaseProgress(phase) {
+  const completed = getCompleted();
+  const done = phase.tasks.filter(t => completed.includes(t.id)).length;
+  return { done, total: phase.tasks.length, complete: done === phase.tasks.length };
+}
+
+function overallProgress() {
+  const completed = getCompleted();
+  const total = PHASES.flatMap(p => p.tasks).length;
+  return { done: completed.length, total };
+}
+
+// ─── Render ──────────────────────────────────────────────────────────────────
+
+function renderHero() {
+  const hero = document.getElementById('heroWelcome');
+  if (name) {
+    hero.innerHTML = `
+      <h1>Welcome to Envitia, <span>${escapeHtml(name)}</span></h1>
+      <p>This is your onboarding roadmap. Work through each phase at your own pace — tick tasks off as you go and track your progress below.</p>
+    `;
+  } else {
+    hero.innerHTML = `
+      <h1>Welcome to <span>Envitia</span></h1>
+      <p>Let us personalise this for you — what should we call you?</p>
+      <div class="name-form">
+        <input class="name-input" id="nameInput" type="text" placeholder="Your first name" maxlength="40" />
+        <button class="name-btn" onclick="saveName()">Get started</button>
+      </div>
+    `;
+    const input = document.getElementById('nameInput');
+    if (input) {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') saveName(); });
+      setTimeout(() => input.focus(), 50);
+    }
+  }
+}
+
+function saveName() {
+  const input = document.getElementById('nameInput');
+  const val = input ? input.value.trim() : '';
+  if (!val) return;
+  name = val;
+  localStorage.setItem(STORE_NAME, name);
+  renderAll();
+}
+
+function renderProgress() {
+  const { done, total } = overallProgress();
+  const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = `${done} of ${total} tasks complete`;
+}
+
+function renderTimeline() {
+  const completed = getCompleted();
+  document.getElementById('timelineNav').innerHTML = PHASES.map(p => {
+    const { done, total, complete } = phaseProgress(p);
+    return `
+      <button class="phase-btn ${p.id === activePhaseId ? 'active' : ''} ${complete ? 'complete' : ''}"
+              onclick="setPhase('${p.id}')">
+        <div class="phase-node">${complete ? '✓' : p.index}</div>
+        <div class="phase-info">
+          <div class="phase-name">${p.label}</div>
+          <div class="phase-sublabel">${p.sublabel}</div>
+          <span class="phase-progress-pill">${done}/${total} tasks</span>
+        </div>
+      </button>
+    `;
+  }).join('');
+
+  document.getElementById('mobileTimeline').innerHTML = PHASES.map(p => {
+    const { complete } = phaseProgress(p);
+    return `
+      <button class="mobile-phase-btn ${p.id === activePhaseId ? 'active' : ''} ${complete ? 'complete' : ''}"
+              onclick="setPhase('${p.id}')">
+        ${complete ? '✓ ' : ''}${p.label}
+      </button>
+    `;
+  }).join('');
+}
+
+function renderContent() {
+  const completed = getCompleted();
+  const phase = PHASES.find(p => p.id === activePhaseId);
+  const { done, total, complete } = phaseProgress(phase);
+  const phaseIdx = PHASES.findIndex(p => p.id === activePhaseId);
+  const prev = PHASES[phaseIdx - 1];
+  const next = PHASES[phaseIdx + 1];
+
+  document.getElementById('contentArea').innerHTML = `
+    <div class="phase-header">
+      <div class="phase-header-left">
+        <div class="phase-eyebrow">Phase ${phase.index} of ${PHASES.length}</div>
+        <h2 class="phase-title">${phase.label}</h2>
+        <p class="phase-desc">${phase.desc}</p>
+      </div>
+      <div class="phase-complete-badge ${complete ? 'show' : ''}">
+        ✓ Phase complete
+      </div>
+    </div>
+
+    <div class="tasks-section-title">Your tasks</div>
+    <ul class="task-list">
+      ${phase.tasks.map(t => {
+        const done = completed.includes(t.id);
+        return `
+          <li class="task-item ${done ? 'done' : ''}" onclick="toggleTask('${t.id}')">
+            <div class="task-check">
+              <svg class="task-check-tick" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 4L3.5 6.5L9 1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="task-text">${t.text}</span>
+          </li>
+        `;
+      }).join('')}
+    </ul>
+
+    ${phase.links.length ? `
+      <div class="links-section-title">Useful links &amp; contacts</div>
+      <div class="links-grid">
+        ${phase.links.map(l => `
+          <a class="link-card" href="${l.url}" ${l.url.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}>
+            <span class="link-card-icon">${l.icon}</span>
+            <span class="link-card-label">
+              ${l.label}
+              <span class="link-card-sub">${l.sub}</span>
+            </span>
+            <span class="link-card-arrow">→</span>
+          </a>
+        `).join('')}
+      </div>
+    ` : ''}
+
+    <div class="phase-nav">
+      <button class="phase-nav-btn prev" onclick="setPhase('${prev ? prev.id : ''}')" ${!prev ? 'disabled' : ''}>
+        ← ${prev ? prev.label : ''}
+      </button>
+      <button class="phase-nav-btn next" onclick="setPhase('${next ? next.id : ''}')" ${!next ? 'disabled' : ''}>
+        ${next ? next.label : ''} →
+      </button>
+    </div>
+  `;
+}
+
+function renderAll() {
+  renderHero();
+  renderProgress();
+  renderTimeline();
+  renderContent();
+}
+
+function setPhase(id) {
+  if (!id) return;
+  activePhaseId = id;
+  renderAll();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function confirmReset() {
+  if (confirm('Reset all task progress? This cannot be undone.')) {
+    saveCompleted([]);
+    renderAll();
+  }
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── Init ─────────────────────────────────────────────────────────────────────
+renderAll();
+</script>
+</body>
+</html>

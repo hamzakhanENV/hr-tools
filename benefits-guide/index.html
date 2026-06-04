@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benefits at Envitia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:      #84bd00;
+      --green-dark: #6aa000;
+      --dark:       #1f2a44;
+      --dark-mid:   #2d3d5e;
+      --light:      #f5f7fa;
+      --white:      #ffffff;
+      --border:     #e1e4e8;
+      --text:       #1f2a44;
+      --text-mid:   #4a5568;
+      --text-muted: #718096;
+      --radius:     6px;
+      --shadow:     0 2px 12px rgba(0,0,0,.10);
+      --shadow-lg:  0 8px 32px rgba(0,0,0,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Poppins", sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; }
+
+    /* ─── Nav ─────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: var(--dark); display: flex; align-items: center;
+      padding: 0 40px; z-index: 100; box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    }
+    .nav-logo img { height: 26px; width: auto; display: block; }
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 24px; }
+    .nav-link { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: rgba(255,255,255,.75); transition: color .15s; }
+    .nav-link:hover { color: var(--green); }
+
+    /* ─── Hero ────────────────────────────────────────────────────── */
+    .hero { margin-top: 64px; background: var(--dark); padding: 64px 60px 56px; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green); margin-bottom: 16px; }
+    .hero-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--green); }
+    .hero h1 { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -.5px; margin-bottom: 16px; }
+    .hero h1 span { color: var(--green); }
+    .hero-desc { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,.6); max-width: 580px; margin-bottom: 36px; }
+    .hero-highlights { display: flex; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
+    .highlight { display: flex; align-items: center; gap: 10px; }
+    .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+    .highlight-text { font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.75); }
+
+    /* ─── Layout ──────────────────────────────────────────────────── */
+    .page-wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 220px 1fr; }
+
+    /* ─── Sidebar ─────────────────────────────────────────────────── */
+    .sidebar {
+      position: sticky; top: 64px; align-self: start;
+      height: calc(100vh - 64px); overflow-y: auto;
+      border-right: 1px solid var(--border); padding: 32px 0;
+    }
+    .sidebar-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); padding: 0 24px 12px; }
+    .cat-btn {
+      display: flex; align-items: center; gap: 12px; width: 100%;
+      padding: 11px 24px; background: none; border: none;
+      border-right: 3px solid transparent; text-align: left;
+      font-size: .84rem; font-weight: 500; color: var(--text-mid);
+      transition: background .12s, color .12s, border-color .12s;
+    }
+    .cat-btn:hover { background: var(--light); color: var(--text); }
+    .cat-btn.active { background: rgba(132,189,0,.06); color: var(--green-dark); font-weight: 700; border-right-color: var(--green); }
+    .cat-icon { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
+
+    /* ─── Content area ────────────────────────────────────────────── */
+    .content { padding: 48px 56px 80px; }
+
+    .panel-header { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .panel-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green-dark); margin-bottom: 8px; }
+    .panel-title { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; color: var(--dark); margin-bottom: 12px; letter-spacing: -.3px; }
+    .panel-desc { font-size: .93rem; line-height: 1.75; color: var(--text-mid); }
+
+    /* ─── Benefit cards ───────────────────────────────────────────── */
+    .benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .benefit-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: box-shadow .15s; }
+    .benefit-card:hover { box-shadow: var(--shadow); }
+
+    .benefit-card-head { padding: 20px 20px 16px; display: flex; align-items: flex-start; gap: 14px; }
+    .benefit-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--light); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
+    .benefit-meta { flex: 1; min-width: 0; }
+    .benefit-title { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .benefit-summary { font-size: .81rem; line-height: 1.6; color: var(--text-mid); }
+
+    .benefit-toggle {
+      width: 100%; padding: 10px 20px;
+      background: var(--light); border: none; border-top: 1px solid var(--border);
+      font-size: .75rem; font-weight: 600; color: var(--text-muted); text-align: left;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .12s, color .12s;
+    }
+    .benefit-toggle:hover { background: rgba(132,189,0,.07); color: var(--green-dark); }
+    .toggle-chevron { display: inline-block; transition: transform .2s; font-style: normal; }
+    .benefit-toggle.open .toggle-chevron { transform: rotate(180deg); }
+
+    .benefit-detail {
+      max-height: 0; overflow: hidden;
+      transition: max-height .28s ease, padding .28s ease;
+      font-size: .84rem; line-height: 1.75; color: var(--text-mid);
+      padding: 0 20px;
+    }
+    .benefit-detail.open { max-height: 320px; padding: 16px 20px; }
+    .benefit-detail ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .benefit-detail ul li { display: flex; gap: 10px; align-items: flex-start; }
+    .benefit-detail ul li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; margin-top: 9px; }
+
+    /* ─── Panel footer ────────────────────────────────────────────── */
+    .panel-footer { margin-top: 40px; padding: 22px 26px; background: var(--light); border-radius: var(--radius); border-left: 3px solid var(--green); }
+    .panel-footer p { font-size: .87rem; line-height: 1.7; color: var(--text-mid); }
+    .panel-footer a { color: var(--green-dark); font-weight: 600; }
+    .panel-footer a:hover { text-decoration: underline; }
+
+    /* ─── Mobile tab row ──────────────────────────────────────────── */
+    .mobile-tabs { display: none; }
+
+    /* ─── Responsive ──────────────────────────────────────────────── */
+    @media (max-width: 960px) {
+      .page-wrap { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .mobile-tabs {
+        display: flex; overflow-x: auto; gap: 6px;
+        padding: 12px 20px; border-bottom: 1px solid var(--border);
+        position: sticky; top: 64px; z-index: 50; background: var(--white);
+        scrollbar-width: none;
+      }
+      .mobile-tabs::-webkit-scrollbar { display: none; }
+      .mobile-tab {
+        flex-shrink: 0; padding: 7px 14px;
+        background: var(--light); border: 1px solid var(--border); border-radius: 20px;
+        font-size: .76rem; font-weight: 600; color: var(--text-muted);
+        transition: all .12s; white-space: nowrap;
+      }
+      .mobile-tab.active { background: var(--green); color: var(--dark); border-color: var(--green); }
+      .content { padding: 32px 20px 60px; }
+    }
+    @media (max-width: 700px) {
+      .hero { padding: 48px 20px 40px; }
+      .hero-highlights { gap: 20px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .nav { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Nav ───────────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="https://www.envitia.com" class="nav-logo">
+    <img src="https://www.envitia.com/wp-content/uploads/2022/03/white-envitia-logo.svg" alt="Envitia" />
+  </a>
+  <div class="nav-right">
+    <a href="https://www.envitia.com/about/" class="nav-link">About</a>
+    <a href="https://www.envitia.com/careers/" class="nav-link">Careers</a>
+  </div>
+</nav>
+
+<!-- ─── Hero ──────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Life at Envitia</div>
+    <h1>Your <span>benefits</span> at Envitia</h1>
+    <p class="hero-desc">We're committed to supporting you at work and beyond. Explore everything available to you — from financial security and wellbeing to flexibility and growth.</p>
+    <div class="hero-highlights">
+      <div class="highlight"><div class="highlight-dot"></div><span class="highlight-text">25 days annual leave</span></div>
+      <div class="highlight"><div class="highlight-dot"></div><span class="highlight-text">Private medical insurance</span></div>
+      <div class="highlight"><div class="highlight-dot"></div><span class="highlight-text">Hybrid working</span></div>
+      <div class="highlight"><div class="highlight-dot"></div><span class="highlight-text">Personal L&amp;D budget</span></div>
+      <div class="highlight"><div class="highlight-dot"></div><span class="highlight-text">Enhanced parental leave</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Mobile tab row ────────────────────────────────────────────────────── -->
+<div class="mobile-tabs" id="mobileTabs"></div>
+
+<!-- ─── Main layout ───────────────────────────────────────────────────────── -->
+<div class="page-wrap">
+  <aside class="sidebar">
+    <div class="sidebar-label">Browse benefits</div>
+    <nav id="sidebarNav"></nav>
+  </aside>
+  <div class="content" id="contentArea"></div>
+</div>
+
+<script>
+// ─── Data ────────────────────────────────────────────────────────────────────
+
+const CATEGORIES = [
+  {
+    id: 'financial',
+    label: 'Financial',
+    icon: '💰',
+    desc: 'We want you to feel financially secure. These benefits are designed to support you now and plan for your future.',
+    benefits: [
+      {
+        title: 'Pension Scheme',
+        icon: '🏦',
+        summary: 'Defined contribution pension scheme with employer contributions above the statutory minimum.',
+        detail: [
+          'Employer contribution of [X]% of qualifying salary',
+          'Employee contribution from [X]%',
+          'Managed through [provider — to be confirmed]',
+          'Access to an online pension portal and planning tools',
+        ],
+      },
+      {
+        title: 'Life Assurance',
+        icon: '🛡',
+        summary: 'Death in service benefit providing financial protection for your family.',
+        detail: [
+          '[X]x your annual salary paid to your nominated beneficiary',
+          'Cover from day one of employment',
+          'Nomination form completed during onboarding',
+        ],
+      },
+      {
+        title: 'Income Protection',
+        icon: '📊',
+        summary: 'Long-term cover if you are unable to work due to illness or injury.',
+        detail: [
+          'Covers [X]% of your salary after a [X]-week qualifying period',
+          'Provides regular income until you return to work or reach retirement',
+          'Managed through [provider — to be confirmed]',
+        ],
+      },
+      {
+        title: 'Annual Salary Review',
+        icon: '📈',
+        summary: 'Transparent pay review process linked to performance and market benchmarking.',
+        detail: [
+          'Annual review conducted each [month — to be confirmed]',
+          'Informed by market benchmarking data and individual performance ratings',
+          'Clear and transparent process involving your manager and P&C',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'health',
+    label: 'Health & Wellbeing',
+    icon: '🏥',
+    desc: 'Your health matters. We offer a range of support to keep you feeling your best — physically and mentally.',
+    benefits: [
+      {
+        title: 'Private Medical Insurance',
+        icon: '🩺',
+        summary: 'Comprehensive private healthcare cover, with options to include family members.',
+        detail: [
+          'Provided through [BUPA / AXA / provider — to be confirmed]',
+          'Covers GP access, specialist consultations, diagnostics, and treatment',
+          'Option to add a spouse/partner and children at a preferential rate',
+          'Available from [day one / after probation — to be confirmed]',
+        ],
+      },
+      {
+        title: 'Employee Assistance Programme',
+        icon: '💬',
+        summary: 'Confidential 24/7 support for personal, financial, and mental health challenges.',
+        detail: [
+          'Free and anonymous counselling sessions — phone, video, or face-to-face',
+          '24/7 helpline for urgent support',
+          'Financial and legal advice included',
+          'Available to you and your immediate family members',
+        ],
+      },
+      {
+        title: 'Mental Health Support',
+        icon: '🧠',
+        summary: 'Trained mental health first aiders and access to professional support.',
+        detail: [
+          'Trained Mental Health First Aiders available across the business',
+          'Professional counselling access via the EAP',
+          'Regular wellbeing initiatives, campaigns, and awareness sessions',
+        ],
+      },
+      {
+        title: 'Gym & Fitness',
+        icon: '🏃',
+        summary: 'Contribution towards a gym membership or other fitness activities.',
+        detail: [
+          'Monthly contribution of [£X] towards a gym of your choice',
+          'Alternatively, contributions can apply to other qualifying fitness activities',
+          'Claimed via [HR portal / process — to be confirmed]',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'leave',
+    label: 'Leave & Time Off',
+    icon: '🌴',
+    desc: 'Rest and recharge. We believe in giving you the time you need — for holidays, family, and life.',
+    benefits: [
+      {
+        title: 'Annual Leave',
+        icon: '✈',
+        summary: '25 days per year plus UK bank holidays, increasing with length of service.',
+        detail: [
+          '25 days holiday per year, plus the standard UK bank holidays',
+          'Entitlement increases by [1 day] for each year of service, up to [X days]',
+          'Option to buy or sell up to [X] days per year',
+          'Holiday year runs [1 January to 31 December]',
+        ],
+      },
+      {
+        title: 'Enhanced Parental Leave',
+        icon: '👶',
+        summary: 'Enhanced maternity, paternity, and shared parental leave above statutory minimums.',
+        detail: [
+          'Enhanced maternity pay: [X weeks at full pay, X weeks at half pay]',
+          'Enhanced paternity pay: [X weeks at full pay]',
+          'Shared parental leave available and supported',
+          'Full details are set out in the Parental Leave Policy',
+        ],
+      },
+      {
+        title: 'Volunteering Day',
+        icon: '🤝',
+        summary: 'One fully paid day per year to volunteer for a cause that matters to you.',
+        detail: [
+          '1 paid volunteering day per calendar year',
+          'No restrictions on the type of activity or organisation',
+          'Booked through [your line manager / HR system — to be confirmed]',
+        ],
+      },
+      {
+        title: 'Enhanced Sick Pay',
+        icon: '🌡',
+        summary: 'Enhanced sick pay above statutory minimum during periods of illness.',
+        detail: [
+          '[X weeks] full pay followed by [X weeks] half pay, depending on service length',
+          'Full policy in the Employee Handbook',
+          'Occupational health referrals available for longer-term absences',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'learning',
+    label: 'Learning & Development',
+    icon: '📚',
+    desc: 'We invest in your growth. Whether formal qualifications, industry events, or day-to-day learning — we support all of it.',
+    benefits: [
+      {
+        title: 'Personal L&D Budget',
+        icon: '🎯',
+        summary: 'An annual budget for training, courses, books, and professional development.',
+        detail: [
+          '[£X] per person per year personal development budget',
+          'Covers courses, books, online learning, qualifications, and conferences',
+          'Approved by your line manager and claimed via [HR portal]',
+          'Budget resets each [April / January — to be confirmed]',
+        ],
+      },
+      {
+        title: 'Professional Memberships',
+        icon: '🏛',
+        summary: 'Company-funded membership of relevant professional bodies and associations.',
+        detail: [
+          'Envitia funds memberships relevant to your role (e.g. BCS, APM, PMI, CIPS)',
+          'Discuss with your line manager which memberships are appropriate',
+          'Annual renewals covered by the business',
+        ],
+      },
+      {
+        title: 'Study Leave',
+        icon: '📖',
+        summary: 'Paid study leave for relevant professional qualifications and exams.',
+        detail: [
+          'Available for qualifications aligned to your role and development plan',
+          'Covers exam days and agreed study time in the run-up to assessments',
+          'Agreed and approved through P&C and your line manager',
+        ],
+      },
+      {
+        title: 'Conference & Events',
+        icon: '🎤',
+        summary: 'Attendance at relevant industry conferences and speaking opportunities.',
+        detail: [
+          'Conference attendance supported with budget subject to approval',
+          'Speaking and thought leadership opportunities actively encouraged',
+          'Envitia regularly attends major geospatial, defence, and data conferences',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'flexible',
+    label: 'Flexible Working',
+    icon: '🏠',
+    desc: 'Work in a way that suits your life. We trust our people to deliver, wherever they work best.',
+    benefits: [
+      {
+        title: 'Hybrid Working',
+        icon: '💻',
+        summary: 'A flexible mix of home and office working — no rigid daily requirement.',
+        detail: [
+          'Most roles are hybrid — typical expectation is [X days per week in office]',
+          'Home and office split agreed with your line manager based on role and project',
+          'Offices in [location(s) — to be confirmed]',
+          'Home working equipment support available via the tech scheme',
+        ],
+      },
+      {
+        title: 'Flexible Hours',
+        icon: '🕐',
+        summary: 'Choose your start and finish time around a set of agreed core hours.',
+        detail: [
+          'Core hours: [9:30am – 3:00pm] — availability expected within this window',
+          'Start anytime between [7:30am – 10:00am] and adjust finish accordingly',
+          'Agreed with your line manager, taking project and team needs into account',
+        ],
+      },
+      {
+        title: 'Compressed Hours',
+        icon: '📅',
+        summary: 'Work your full contracted hours across fewer days where your role allows.',
+        detail: [
+          'Options include a 9-day fortnight or 4.5-day week',
+          'Subject to business need and line manager approval',
+          'No reduction in salary — the same hours worked across fewer days',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'perks',
+    label: 'Additional Perks',
+    icon: '⭐',
+    desc: 'The extras that make a difference. Little things (and some not so little) that we think you will appreciate.',
+    benefits: [
+      {
+        title: 'Cycle to Work Scheme',
+        icon: '🚴',
+        summary: 'A government-backed scheme to buy a bike and accessories tax-efficiently.',
+        detail: [
+          'Save [25–40]% on a bike and accessories via salary sacrifice',
+          'No limit on bike value — any style qualifies',
+          'Accessible via [provider name / HR portal — to be confirmed]',
+        ],
+      },
+      {
+        title: 'Tech Scheme',
+        icon: '📱',
+        summary: 'Salary sacrifice scheme to purchase personal tech at a tax-efficient rate.',
+        detail: [
+          'Buy personal tech (laptops, phones, tablets, peripherals) via salary sacrifice',
+          'Spread the cost interest-free over [12 months]',
+          'Available through [provider name — to be confirmed]',
+        ],
+      },
+      {
+        title: 'Employee Referral Bonus',
+        icon: '👥',
+        summary: 'A cash bonus when you refer someone who successfully joins Envitia.',
+        detail: [
+          '[£X] bonus paid [X months] after your referral joins and completes probation',
+          'No cap on the number of referrals',
+          'Full details in the Referral Policy — ask P&C for a copy',
+        ],
+      },
+      {
+        title: 'Social Events',
+        icon: '🎉',
+        summary: 'Regular team socials and company-wide events throughout the year.',
+        detail: [
+          'Annual summer and Christmas company events',
+          'Regular team social budgets for local activities',
+          'Sports, social, and interest groups — ask your team what\'s on',
+        ],
+      },
+    ],
+  },
+];
+
+// ─── State ───────────────────────────────────────────────────────────────────
+
+let activeCategory = CATEGORIES[0].id;
+
+// ─── Render ──────────────────────────────────────────────────────────────────
+
+function render() {
+  const cat = CATEGORIES.find(c => c.id === activeCategory);
+
+  // Sidebar
+  document.getElementById('sidebarNav').innerHTML = CATEGORIES.map(c => `
+    <button class="cat-btn ${c.id === activeCategory ? 'active' : ''}"
+            onclick="setCategory('${c.id}')">
+      <span class="cat-icon">${c.icon}</span>${c.label}
+    </button>
+  `).join('');
+
+  // Mobile tabs
+  document.getElementById('mobileTabs').innerHTML = CATEGORIES.map(c => `
+    <button class="mobile-tab ${c.id === activeCategory ? 'active' : ''}"
+            onclick="setCategory('${c.id}')">
+      ${c.icon} ${c.label}
+    </button>
+  `).join('');
+
+  // Content
+  document.getElementById('contentArea').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-eyebrow">Benefits</div>
+      <h2 class="panel-title">${cat.label}</h2>
+      <p class="panel-desc">${cat.desc}</p>
+    </div>
+    <div class="benefits-grid">
+      ${cat.benefits.map(b => `
+        <div class="benefit-card">
+          <div class="benefit-card-head">
+            <div class="benefit-icon">${b.icon}</div>
+            <div class="benefit-meta">
+              <div class="benefit-title">${b.title}</div>
+              <div class="benefit-summary">${b.summary}</div>
+            </div>
+          </div>
+          <button class="benefit-toggle" onclick="toggleDetail(this)">
+            More detail <i class="toggle-chevron">▼</i>
+          </button>
+          <div class="benefit-detail">
+            <ul>${b.detail.map(d => `<li>${d}</li>`).join('')}</ul>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div class="panel-footer">
+      <p>
+        <strong>Questions about your benefits?</strong>
+        Speak to the People &amp; Culture team at
+        <a href="mailto:people@envitia.com">people@envitia.com</a>
+        or reach out on Teams. Your benefits summary is also included in your offer letter and employment contract.
+      </p>
+    </div>
+  `;
+}
+
+function setCategory(id) {
+  activeCategory = id;
+  render();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleDetail(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+}
+
+render();
+</script>
+</body>
+</html>
