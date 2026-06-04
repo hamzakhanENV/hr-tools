@@ -44,7 +44,6 @@
     .hero { margin-top: 64px; background: var(--dark); padding: 52px 60px 44px; }
     .hero-inner { max-width: 1200px; margin: 0 auto; }
     .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green); margin-bottom: 14px; }
-    .hero-label::before { content: ''; display: block; width: 24px; height: 2px; background: var(--green); }
 
     /* Name personalisation */
     .hero-welcome { margin-bottom: 24px; }
@@ -287,12 +286,12 @@ const PHASES = [
     label: 'Before You Start',
     sublabel: 'Pre-joining',
     index: 1,
-    desc: 'Everything to get in order before your first day. P&C will guide you through most of this — don\'t worry if something\'s unclear, just ask.',
+    desc: 'Everything to get in order before your first day. P&C will guide you through most of this - don\'t worry if something\'s unclear, just ask.',
     tasks: [
       { id: 'b1', text: 'Complete your new starter forms (sent by P&C via email)' },
       { id: 'b2', text: 'Return your signed contract and right-to-work documents' },
       { id: 'b3', text: 'Confirm your start date, time, and office location with your manager' },
-      { id: 'b4', text: 'Check your first-day logistics — travel, parking, what to bring' },
+      { id: 'b4', text: 'Check your first-day logistics - travel, parking, what to bring' },
       { id: 'b5', text: 'Read the new starter information pack from P&C' },
     ],
     links: [
@@ -305,7 +304,7 @@ const PHASES = [
     label: 'Day 1',
     sublabel: 'Your first day',
     index: 2,
-    desc: 'A day to get settled, meet people, and set up your kit. No pressure to be productive — just absorb, ask questions, and get comfortable.',
+    desc: 'A day to get settled, meet people, and set up your kit. No pressure to be productive - just absorb, ask questions, and get comfortable.',
     tasks: [
       { id: 'd1', text: 'Meet your P&C contact and collect your kit and access pass' },
       { id: 'd2', text: 'Set up your laptop and log in to your Envitia accounts' },
@@ -326,7 +325,7 @@ const PHASES = [
     index: 3,
     desc: 'Time to find your feet. Get access to everything you need, start joining the team rhythms, and complete your compliance training.',
     tasks: [
-      { id: 'w1', text: 'Confirm you have access to all systems — flag anything missing to IT' },
+      { id: 'w1', text: 'Confirm you have access to all systems - flag anything missing to IT' },
       { id: 'w2', text: 'Join your team\'s regular ceremonies (standup, sprint, team meetings)' },
       { id: 'w3', text: 'Complete all mandatory compliance e-learning modules' },
       { id: 'w4', text: 'Submit your Baseline Personnel Security Standard (BPSS) documentation' },
@@ -443,12 +442,12 @@ function renderHero() {
   if (name) {
     hero.innerHTML = `
       <h1>Welcome to Envitia, <span>${escapeHtml(name)}</span></h1>
-      <p>This is your onboarding roadmap. Work through each phase at your own pace — tick tasks off as you go and track your progress below.</p>
+      <p>This is your onboarding roadmap. Work through each phase at your own pace - tick tasks off as you go and track your progress below.</p>
     `;
   } else {
     hero.innerHTML = `
       <h1>Welcome to <span>Envitia</span></h1>
-      <p>Let us personalise this for you — what should we call you?</p>
+      <p>Let us personalise this for you - what should we call you?</p>
       <div class="name-form">
         <input class="name-input" id="nameInput" type="text" placeholder="Your first name" maxlength="40" />
         <button class="name-btn" onclick="saveName()">Get started</button>
