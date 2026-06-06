@@ -1,1 +1,13 @@
-.claude
+# Claude Code local config
+.claude/
+
+# Windows junk
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# VS Code local settings (workspace settings are fine to commit, but not local overrides)
+.vscode/settings.json
+
+# Logs
+*.log
