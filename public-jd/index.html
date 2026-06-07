@@ -26,9 +26,10 @@
 
     body {
       font-family: "halyard-display", sans-serif;
+      font-weight: 300;
       color: var(--text);
       background: var(--white);
-      -webkit-font-smoothing: antialiased;
+      -webkit-font-smoothing: subpixel-antialiased; -moz-osx-font-smoothing: auto;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -91,7 +92,7 @@
     }
     .hero h1 {
       font-size: clamp(2.2rem, 3.5vw, 3.4rem);
-      font-weight: 800;
+      font-weight: 700;
       color: var(--white);
       line-height: 1.12;
       letter-spacing: -0.8px;
@@ -110,7 +111,7 @@
       padding-top: 28px;
     }
     .hero-stat-n {
-      font-size: 1.8rem; font-weight: 800;
+      font-size: 1.8rem; font-weight: 700;
       color: var(--green); line-height: 1;
       margin-bottom: 5px;
     }
@@ -234,7 +235,7 @@
       border-radius: 50%;
       background: var(--light);
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem; font-weight: 800;
+      font-size: 0.75rem; font-weight: 700;
       color: var(--dark-mid);
       border: 1.5px solid var(--border);
     }
@@ -321,7 +322,7 @@
     }
     .detail-title {
       font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800; line-height: 1.2;
+      font-weight: 700; line-height: 1.2;
       letter-spacing: -0.5px;
       color: var(--dark);
       margin-bottom: 20px;
@@ -384,7 +385,7 @@
       display: flex; gap: 10px; align-items: flex-start;
     }
     .req-list li .chk {
-      font-size: 0.7rem; font-weight: 800;
+      font-size: 0.7rem; font-weight: 700;
       color: var(--green); flex-shrink: 0; margin-top: 3px;
     }
     .req-list.desirable li .chk { color: var(--border); }
@@ -401,7 +402,7 @@
     .pathway-node-dot {
       width: 36px; height: 36px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 0.72rem; font-weight: 800;
+      font-size: 0.72rem; font-weight: 700;
       flex-shrink: 0; z-index: 1;
     }
     .pathway-item.current .pathway-node-dot {
@@ -441,7 +442,7 @@
       display: flex; align-items: center; justify-content: space-between; gap: 24px;
     }
     .apply-block-text h3 {
-      font-size: 1.15rem; font-weight: 800;
+      font-size: 1.15rem; font-weight: 700;
       color: var(--white); margin-bottom: 6px;
     }
     .apply-block-text p { font-size: 0.85rem; color: rgba(255,255,255,0.55); }

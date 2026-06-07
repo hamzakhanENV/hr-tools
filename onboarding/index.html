@@ -23,7 +23,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "halyard-display", sans-serif; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; }
+    body { font-family: "halyard-display", sans-serif; font-weight: 300; color: var(--text); background: var(--white); -webkit-font-smoothing: subpixel-antialiased; -moz-osx-font-smoothing: auto; }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; }
 
@@ -45,7 +45,7 @@
 
     /* Name personalisation */
     .hero-welcome { margin-bottom: 24px; }
-    .hero-welcome h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--white); line-height: 1.15; letter-spacing: -.5px; }
+    .hero-welcome h1 { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--white); line-height: 1.15; letter-spacing: -.5px; }
     .hero-welcome h1 span { color: var(--green); }
     .hero-welcome p { margin-top: 10px; font-size: .95rem; line-height: 1.7; color: rgba(255,255,255,.6); max-width: 520px; }
 
@@ -67,9 +67,9 @@
 
     /* Progress bar */
     .progress-wrap { border-top: 1px solid rgba(255,255,255,.1); padding-top: 24px; }
-    .progress-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
-    .progress-label { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .5px; }
-    .progress-count { font-size: .85rem; font-weight: 700; color: var(--green); }
+    .progress-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; gap: 16px; }
+    .progress-label { font-size: .78rem; font-weight: 600; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .5px; min-width: 0; }
+    .progress-count { font-size: .85rem; font-weight: 700; color: var(--green); white-space: nowrap; flex-shrink: 0; }
     .progress-bar-track { height: 6px; background: rgba(255,255,255,.1); border-radius: 10px; overflow: hidden; }
     .progress-bar-fill { height: 100%; background: var(--green); border-radius: 10px; transition: width .4s ease; }
 
@@ -97,7 +97,7 @@
     .phase-node {
       width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; margin-top: 1px;
       display: flex; align-items: center; justify-content: center;
-      font-size: .72rem; font-weight: 800;
+      font-size: .72rem; font-weight: 700;
       border: 2px solid var(--border); background: var(--light); color: var(--text-muted);
       transition: all .15s;
     }
@@ -123,7 +123,7 @@
     .phase-header { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; }
     .phase-header-left { flex: 1; }
     .phase-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green-dark); margin-bottom: 8px; }
-    .phase-title { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -.3px; }
+    .phase-title { font-size: clamp(1.4rem, 2.5vw, 1.9rem); font-weight: 700; color: var(--dark); margin-bottom: 10px; letter-spacing: -.3px; }
     .phase-desc { font-size: .92rem; line-height: 1.75; color: var(--text-mid); }
 
     .phase-complete-badge {
@@ -136,7 +136,7 @@
     .phase-complete-badge.show { display: flex; }
 
     /* Tasks */
-    .tasks-section-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .tasks-section-title { font-size: .8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
     .task-list { list-style: none; display: flex; flex-direction: column; gap: 2px; margin-bottom: 40px; }
     .task-item {
@@ -160,11 +160,11 @@
     .task-check-tick path { stroke: var(--dark); }
     .task-item.done .task-check-tick { display: block; }
 
-    .task-text { font-size: .88rem; line-height: 1.6; color: var(--text-mid); flex: 1; padding-top: 1px; }
+    .task-text { font-size: .88rem; font-weight: 400; line-height: 1.6; color: var(--text-mid); flex: 1; padding-top: 1px; }
     .task-item.done .task-text { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--border); }
 
     /* Links */
-    .links-section-title { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .links-section-title { font-size: .8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
     .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .link-card {
       display: flex; align-items: center; gap: 12px;
