@@ -23,7 +23,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: "halyard-display", sans-serif; font-weight: 300; color: var(--text); background: var(--white); -webkit-font-smoothing: subpixel-antialiased; -moz-osx-font-smoothing: auto; }
+    body { font-family: "halyard-display", sans-serif; font-weight: 300; color: var(--text); background: var(--white); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; cursor: pointer; }
 
@@ -35,20 +35,20 @@
     }
     .nav-logo img { height: 26px; width: auto; display: block; }
     .nav-right { margin-left: auto; display: flex; align-items: center; gap: 24px; }
-    .nav-link { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: rgba(255,255,255,.75); transition: color .15s; }
+    .nav-link { font-size: .78rem; font-weight: 400; text-transform: uppercase; letter-spacing: .5px; color: rgba(255,255,255,.75); transition: color .15s; }
     .nav-link:hover { color: var(--green); }
 
     /* ─── Hero ────────────────────────────────────────────────────── */
     .hero { margin-top: 64px; background: var(--dark); padding: 64px 60px 56px; }
     .hero-inner { max-width: 1200px; margin: 0 auto; }
-    .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green); margin-bottom: 16px; }
+    .hero-label { display: inline-flex; align-items: center; gap: 8px; font-size: .75rem; font-weight: 500; text-transform: uppercase; letter-spacing: .8px; color: var(--green); margin-bottom: 16px; }
     .hero h1 { font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 700; color: var(--white); line-height: 1.15; letter-spacing: -.5px; margin-bottom: 16px; }
     .hero h1 span { color: var(--green); }
     .hero-desc { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,.6); max-width: 580px; margin-bottom: 36px; }
     .hero-highlights { display: flex; gap: 32px; flex-wrap: wrap; border-top: 1px solid rgba(255,255,255,.1); padding-top: 28px; }
     .highlight { display: flex; align-items: center; gap: 10px; }
     .highlight-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-    .highlight-text { font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.75); }
+    .highlight-text { font-size: .85rem; font-weight: 400; color: rgba(255,255,255,.75); }
 
     /* ─── Layout ──────────────────────────────────────────────────── */
     .page-wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 220px 1fr; }
@@ -59,24 +59,24 @@
       height: calc(100vh - 64px); overflow-y: auto;
       border-right: 1px solid var(--border); padding: 32px 0;
     }
-    .sidebar-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); padding: 0 24px 12px; }
+    .sidebar-label { font-size: .68rem; font-weight: 400; text-transform: uppercase; letter-spacing: .8px; color: var(--text-muted); padding: 0 24px 12px; }
     .cat-btn {
       display: flex; align-items: center; gap: 12px; width: 100%;
       padding: 11px 24px; background: none; border: none;
       border-right: 3px solid transparent; text-align: left;
-      font-size: .84rem; font-weight: 500; color: var(--text-mid);
+      font-size: .84rem; font-weight: 400; color: var(--text-mid);
       transition: background .12s, color .12s, border-color .12s;
     }
     .cat-btn:hover { background: var(--light); color: var(--text); }
-    .cat-btn.active { background: rgba(132,189,0,.06); color: var(--green-dark); font-weight: 700; border-right-color: var(--green); }
+    .cat-btn.active { background: rgba(132,189,0,.06); color: var(--green-dark); font-weight: 500; border-right-color: var(--green); }
     .cat-icon { font-size: 1rem; flex-shrink: 0; width: 20px; text-align: center; }
 
     /* ─── Content area ────────────────────────────────────────────── */
     .content { padding: 48px 56px 80px; }
 
     .panel-header { margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
-    .panel-eyebrow { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; color: var(--green-dark); margin-bottom: 8px; }
-    .panel-title { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 700; color: var(--dark); margin-bottom: 12px; letter-spacing: -.3px; }
+    .panel-eyebrow { font-size: .72rem; font-weight: 500; text-transform: uppercase; letter-spacing: .8px; color: var(--green-dark); margin-bottom: 8px; }
+    .panel-title { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 600; color: var(--dark); margin-bottom: 12px; letter-spacing: -.3px; }
     .panel-desc { font-size: .93rem; line-height: 1.75; color: var(--text-mid); }
 
     /* ─── Benefit cards ───────────────────────────────────────────── */
@@ -88,13 +88,13 @@
     .benefit-card-head { padding: 20px 20px 16px; display: flex; align-items: flex-start; gap: 14px; }
     .benefit-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--light); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
     .benefit-meta { flex: 1; min-width: 0; }
-    .benefit-title { font-size: .92rem; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+    .benefit-title { font-size: .92rem; font-weight: 600; color: var(--text); margin-bottom: 5px; }
     .benefit-summary { font-size: .81rem; line-height: 1.6; color: var(--text-mid); }
 
     .benefit-toggle {
       width: 100%; padding: 10px 20px;
       background: var(--light); border: none; border-top: 1px solid var(--border);
-      font-size: .75rem; font-weight: 600; color: var(--text-muted); text-align: left;
+      font-size: .75rem; font-weight: 400; color: var(--text-muted); text-align: left;
       display: flex; align-items: center; justify-content: space-between;
       transition: background .12s, color .12s;
     }
@@ -136,7 +136,7 @@
       .mobile-tab {
         flex-shrink: 0; padding: 7px 14px;
         background: var(--light); border: 1px solid var(--border); border-radius: 20px;
-        font-size: .76rem; font-weight: 600; color: var(--text-muted);
+        font-size: .76rem; font-weight: 400; color: var(--text-muted);
         transition: all .12s; white-space: nowrap;
       }
       .mobile-tab.active { background: var(--green); color: var(--dark); border-color: var(--green); }
